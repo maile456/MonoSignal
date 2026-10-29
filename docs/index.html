@@ -1,55 +1,113 @@
 <!doctype html>
-<html lang="zh-CN" data-style="mono-signal" data-theme="dark">
+<html lang="en" data-style="mono-signal" data-theme="dark">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="MonoSignal 原创邮件投递控制台样品，全部记录均为本地模拟。">
-    <meta name="theme-color" content="#111111">
-    <title>投递日志 · MonoSignal</title>
+    <meta name="description" content="MonoSignal, an original developer email product demo with a local delivery workspace.">
+    <meta name="theme-color" content="#050505">
+    <title>MonoSignal / Email for builders</title>
     <link rel="stylesheet" href="tokens.css">
     <link rel="stylesheet" href="styles.css">
     <script src="vendor/lucide.min.js" defer></script>
+    <script src="vendor/three.min.js" defer></script>
+    <script src="hero-scene.js" defer></script>
     <script src="app.js" defer></script>
   </head>
   <body>
-    <a class="skip-link" href="#delivery-logs">跳到投递日志</a>
-    <aside class="sidebar">
-      <a class="brand" href="#overview"><span class="brand-symbol" aria-hidden="true"><i data-lucide="radio-tower"></i></span><span>MonoSignal<span class="brand-dot">.</span></span></a>
-      <div class="workspace-label"><span class="workspace-icon">M</span><span>Demo workspace<small>开发环境</small></span><span class="environment-dot" aria-hidden="true"></span></div>
-      <p class="sidebar-caption">WORKSPACE</p>
-      <nav class="primary-nav" aria-label="主导航">
-        <a href="#overview" data-nav="overview"><i data-lucide="activity" aria-hidden="true"></i><span>概览</span></a>
-        <a href="#delivery-logs" data-nav="delivery-logs" class="is-active"><i data-lucide="mails" aria-hidden="true"></i><span>投递日志</span><span id="nav-record-count">8</span></a>
-        <a href="#api-examples" data-nav="api-examples"><i data-lucide="square-terminal" aria-hidden="true"></i><span>接口示例</span><i class="nav-arrow" data-lucide="arrow-up-right" aria-hidden="true"></i></a>
-      </nav>
-      <div class="sidebar-note"><span class="environment-dot" aria-hidden="true"></span><p>LOCAL SANDBOX<small>演示数据 · 本地模拟</small></p></div>
-      <div class="demo-account"><span class="avatar-fallback">D<img src="images/avatar.jpg" alt="" width="32" height="32"></span><span>演示账号<small>demo@example.com</small></span><i data-lucide="circle-user-round" aria-hidden="true"></i></div>
-    </aside>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="index.html" aria-label="MonoSignal home"><span class="brand-symbol" aria-hidden="true"><i data-lucide="box"></i></span>MonoSignal</a>
+        <button id="menu-toggle" class="icon-button menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="site-nav" title="Navigation"><i data-lucide="menu" aria-hidden="true"></i></button>
+        <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+          <a href="#product">Product</a>
+          <a href="#integrate">Developers</a>
+          <a href="#events">Delivery events</a>
+          <a href="https://github.com/maile456/MonoSignal" target="_blank" rel="noreferrer">Open source<i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
+        </nav>
+        <a class="button button-small header-cta" href="workspace/index.html">Open workspace<i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
+      </div>
+    </header>
 
-    <div class="app-shell">
-      <header class="topbar"><div class="breadcrumb"><span>工作区</span><i data-lucide="chevron-right" aria-hidden="true"></i><strong>邮件服务</strong><span class="environment-label">Sandbox</span></div><a href="#api-examples" class="topbar-link">API 参考<i data-lucide="arrow-up-right" aria-hidden="true"></i></a></header>
-      <main>
-        <section id="overview" class="overview-section" aria-labelledby="page-title">
-          <div class="page-heading"><div><p class="eyebrow">EMAIL INFRASTRUCTURE</p><h1 id="page-title">投递日志<span class="title-slash">/</span><span class="title-secondary">Delivery logs</span></h1><p class="page-description">每一次请求，都有清晰的回声。</p></div><button id="open-test-dialog" class="button button-primary" type="button"><i data-lucide="send" aria-hidden="true"></i>发送测试邮件</button></div>
-          <div class="metrics-band" aria-label="演示数据统计"><div class="metric"><span class="metric-label">请求总量<i data-lucide="arrow-up-right" aria-hidden="true"></i></span><p id="metric-total">8<span>封</span></p><small>全部本地演示记录</small></div><div class="metric"><span class="metric-label">模拟投递率<span class="tiny-dot"></span></span><p id="metric-rate">75.0<span>%</span></p><small id="metric-rate-detail">6 条完成 / 8 条请求</small></div><div class="metric"><span class="metric-label">平均处理耗时<i data-lucide="timer" aria-hidden="true"></i></span><p id="metric-duration">287<span>ms</span></p><small>仅统计完成的演示记录</small></div></div>
-          <div class="activity-section"><div class="activity-heading"><div><h2>请求时段分布</h2><span>按北京时间分组 · 基于全部演示记录</span></div><span class="chart-legend"><span></span>请求数量</span></div><canvas id="activity-chart" height="124" role="img" aria-label="演示邮件请求时段柱状图" aria-describedby="chart-summary"></canvas><p id="chart-summary" class="sr-only"></p></div>
-        </section>
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <div id="hero-scene" class="hero-scene">
+          <canvas id="hero-canvas" role="img" aria-label="An original rotating dark-metal tiled cube"></canvas>
+        </div>
+        <div class="hero-inner">
+          <div class="hero-copy">
+            <p class="hero-product"><span></span>MonoSignal <span class="product-divider">/</span> Email API</p>
+            <h1 id="hero-title">Email for<br>builders.</h1>
+            <p class="hero-description">A clear path from your application to the inbox. One API for messages, delivery events, and the details in between.</p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="workspace/index.html">Explore workspace<i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
+              <a class="text-link" href="#integrate">View integration<i data-lucide="arrow-right" aria-hidden="true"></i></a>
+            </div>
+            <p class="hero-caption"><span class="status-dot"></span>Original product demo <span aria-hidden="true">/</span> No live email</p>
+          </div>
+        </div>
+        <div class="scene-controls" aria-label="Sculpture controls">
+          <button id="scene-turn" class="icon-button" type="button" aria-label="Rotate sculpture" title="Rotate sculpture"><i data-lucide="rotate-3d" aria-hidden="true"></i></button>
+          <button id="scene-motion" class="icon-button" type="button" aria-label="Pause sculpture" title="Pause sculpture" aria-pressed="false"><i data-lucide="pause" aria-hidden="true"></i></button>
+        </div>
+      </section>
 
-        <section id="delivery-logs" class="logs-section" aria-labelledby="logs-title">
-          <div class="section-heading"><div class="section-title"><h2 id="logs-title">最近投递</h2><span id="table-total" class="count-label">8</span></div><span class="demo-label"><span></span>演示数据 · 本地模拟</span></div>
-          <div class="table-toolbar"><label class="search-field"><i data-lucide="search" aria-hidden="true"></i><span class="sr-only">搜索收件人、主题或投递 ID</span><input id="log-search" type="search" placeholder="搜索收件人、主题或 ID" autocomplete="off"></label><label class="status-select"><i data-lucide="list-filter" aria-hidden="true"></i><span class="sr-only">投递状态</span><select id="status-filter"><option value="all">所有状态</option><option value="delivered">投递完成</option><option value="pending">处理中</option><option value="failed">投递失败</option></select></label><button id="clear-filters" class="icon-button" type="button" aria-label="清除筛选" title="清除筛选" disabled><i data-lucide="rotate-ccw" aria-hidden="true"></i></button><span class="table-toolbar-note">本地记录，无外部发送</span></div>
-          <div class="table-scroll"><table class="delivery-table"><thead><tr><th scope="col">状态</th><th scope="col">收件人 / 主题</th><th scope="col">投递 ID</th><th scope="col" class="numeric">耗时</th><th scope="col">创建时间 <i data-lucide="arrow-down" aria-hidden="true"></i></th><th scope="col"><span class="sr-only">详情</span></th></tr></thead><tbody id="log-rows"></tbody></table><div id="empty-state" class="empty-state" hidden><i data-lucide="search-x" aria-hidden="true"></i><h3>没有符合条件的记录</h3><p>试试其他关键词，或清除当前筛选。</p><button id="reset-empty" class="button button-secondary" type="button">清除筛选</button></div></div>
-          <div class="table-footer"><p id="result-summary" aria-live="polite">显示 8 条，共 8 条记录</p><span><i data-lucide="hard-drive" aria-hidden="true"></i>仅保存在本次页面内</span></div>
-          <noscript><p class="noscript">启用 JavaScript 后可查看演示记录与本地模拟交互。</p></noscript>
-        </section>
+      <section id="product" class="product-intro section-shell" aria-labelledby="product-title">
+        <div class="section-kicker"><span class="line"></span>ONE MESSAGE. A CLEAR SIGNAL.<span class="line"></span></div>
+        <h2 id="product-title">The small API<br>behind a big moment.</h2>
+        <p class="section-description">The welcome. The receipt. The password reset.<br>Keep the conversation moving, without losing the details.</p>
+        <div class="product-principles">
+          <article><i data-lucide="terminal" aria-hidden="true"></i><h3>A familiar beginning.</h3><p>A readable request, a predictable response, and a place in the stack you already know.</p></article>
+          <article><i data-lucide="route" aria-hidden="true"></i><h3>Nothing in the dark.</h3><p>From acceptance to delivery, keep the full event history connected to every message.</p></article>
+          <article><i data-lucide="scan-line" aria-hidden="true"></i><h3>The details stay close.</h3><p>Message IDs, timestamps, and response payloads, ready when you need a closer look.</p></article>
+        </div>
+      </section>
 
-        <section id="api-examples" class="api-section" aria-labelledby="api-title"><div class="section-heading"><div><p class="eyebrow">QUICK INTEGRATION</p><h2 id="api-title">从一次请求开始。</h2></div><span class="endpoint-label"><span>POST</span> /v1/emails</span></div><div class="code-tool"><div class="code-toolbar"><div class="code-tabs" role="tablist" aria-label="接口示例语言"><button id="tab-curl" role="tab" aria-controls="code-panel" aria-selected="true" tabindex="0" data-code="curl" class="is-active">cURL</button><button id="tab-node" role="tab" aria-controls="code-panel" aria-selected="false" tabindex="-1" data-code="node">Node.js</button></div><div class="code-copy-group"><span id="code-copy-feedback" role="status"></span><button id="copy-code" class="icon-button" type="button" aria-label="复制接口示例" title="复制代码"><i data-lucide="copy"></i></button></div></div><pre id="code-panel" role="tabpanel" aria-labelledby="tab-curl" tabindex="0"><code id="api-code"></code></pre><div class="code-footnote"><i data-lucide="lock-keyhole" aria-hidden="true"></i><span>示例地址为 api.example.com；此页面不会发起任何 API 请求。</span></div></div></section>
-      </main>
-      <footer class="page-footer"><span>MonoSignal <span class="footer-divider">/</span> 原创技术控制台样品</span><span>所有投递与指标均为演示 · 刷新页面后重置</span></footer>
-    </div>
+      <section id="integrate" class="integration-section section-shell" aria-labelledby="integration-title">
+        <div class="section-heading"><p class="eyebrow">START WITH YOUR STACK</p><h2 id="integration-title">A few lines.<br>Then you're on your way.</h2><p class="section-description">An API that gets out of the way of what you're building.</p></div>
+        <div class="code-tool">
+          <div class="code-toolbar">
+            <div class="code-tabs" role="tablist" aria-label="Integration language">
+              <button id="tab-node" type="button" role="tab" aria-controls="code-panel" aria-selected="true" tabindex="0" data-code="node"><i data-lucide="hexagon" aria-hidden="true"></i>Node.js</button>
+              <button id="tab-python" type="button" role="tab" aria-controls="code-panel" aria-selected="false" tabindex="-1" data-code="python"><i data-lucide="braces" aria-hidden="true"></i>Python</button>
+              <button id="tab-curl" type="button" role="tab" aria-controls="code-panel" aria-selected="false" tabindex="-1" data-code="curl"><i data-lucide="terminal" aria-hidden="true"></i>cURL</button>
+            </div>
+            <div class="copy-group"><span id="copy-status" role="status"></span><button id="copy-code" class="icon-button" type="button" aria-label="Copy integration code" title="Copy code"><i data-lucide="copy" aria-hidden="true"></i></button></div>
+          </div>
+          <div class="code-body">
+            <div class="source-pane"><div class="code-filename"><span id="code-filename">send.ts</span><span>api.example.com</span></div><pre id="code-panel" role="tabpanel" aria-labelledby="tab-node" tabindex="0"><code id="api-code"></code></pre></div>
+            <div class="response-pane">
+              <div class="response-heading"><span>Response</span><span class="demo-badge">LOCAL DEMO</span></div>
+              <pre id="response-code" tabindex="0" aria-label="Local example response"><code>{
+  "id": "msg_demo_01",
+  "status": "accepted"
+}</code></pre>
+              <div class="response-foot"><span id="run-status" role="status">Ready</span><button id="run-example" type="button" class="button button-small"><i data-lucide="play" aria-hidden="true"></i><span>Run example</span></button></div>
+            </div>
+          </div>
+          <div class="code-footer"><span><i data-lucide="lock-keyhole" aria-hidden="true"></i>Example endpoint <span aria-hidden="true">/</span> Local response only</span><a href="workspace/index.html#api-examples">Full API example<i data-lucide="arrow-right" aria-hidden="true"></i></a></div>
+        </div>
+      </section>
 
-    <dialog id="detail-dialog" class="app-dialog detail-dialog" aria-labelledby="detail-title"><div class="dialog-heading"><div><p class="eyebrow">DELIVERY DETAIL</p><h2 id="detail-title">投递详情</h2></div><button class="icon-button" data-close-dialog type="button" aria-label="关闭投递详情" title="关闭"><i data-lucide="x"></i></button></div><div id="detail-content"></div><div class="dialog-footer"><span class="demo-label"><span></span>本地模拟记录</span><button class="button button-secondary" type="button" data-close-dialog>关闭</button></div></dialog>
-    <dialog id="test-dialog" class="app-dialog test-dialog" aria-labelledby="test-title" aria-describedby="test-description"><div class="dialog-heading"><div><p class="eyebrow">LOCAL TEST</p><h2 id="test-title">发送测试邮件</h2></div><button class="icon-button" data-close-dialog type="button" aria-label="关闭测试邮件" title="关闭"><i data-lucide="x"></i></button></div><p id="test-description" class="dialog-description">只在本页追加一条演示记录，不向外部发送邮件。</p><form id="test-form" novalidate><label for="test-email">收件人邮箱</label><input id="test-email" name="email" type="email" placeholder="reader@example.com" autocomplete="email" aria-describedby="test-email-hint test-email-error" required><p id="test-email-hint" class="field-hint">邮箱仅用于显示在本地模拟记录中。</p><p id="test-email-error" class="field-error" hidden></p><div class="test-message-preview"><span>演示主题</span><p>Hello from MonoSignal</p><small>这是一条用于预览投递流程的本地测试记录。</small></div><div class="form-actions"><button class="button button-secondary" data-close-dialog type="button">取消</button><button id="submit-test" class="button button-primary" type="submit"><i data-lucide="send" aria-hidden="true"></i><span>创建模拟记录</span></button></div></form></dialog>
-    <p id="global-status" class="toast" role="status" hidden></p>
+      <section id="events" class="events-section section-shell" aria-labelledby="events-title">
+        <div class="events-copy"><p class="eyebrow">EVERY STEP, IN VIEW</p><h2 id="events-title">Sent is only<br>the beginning.</h2><p class="section-description">Follow the path of a message. The event, the time, the outcome. All together.</p><a class="text-link" href="workspace/index.html#delivery-logs">Open delivery logs<i data-lucide="arrow-right" aria-hidden="true"></i></a></div>
+        <div class="event-stream" aria-label="Local example delivery timeline">
+          <div class="stream-heading"><span><i data-lucide="mail" aria-hidden="true"></i>Welcome to the good part.</span><span class="demo-badge">DEMO</span></div>
+          <div class="stream-recipient"><span>To</span> reader@example.com</div>
+          <ol>
+            <li><span class="event-icon"><i data-lucide="check" aria-hidden="true"></i></span><div><strong>Request accepted</strong><span>Message received by the API</span></div><time datetime="2026-10-29T10:24:01">10:24:01.042</time></li>
+            <li><span class="event-icon"><i data-lucide="arrow-up-right" aria-hidden="true"></i></span><div><strong>Message sent</strong><span>Passed to the delivery queue</span></div><time datetime="2026-10-29T10:24:01">10:24:01.198</time></li>
+            <li><span class="event-icon event-success"><i data-lucide="check-check" aria-hidden="true"></i></span><div><strong>Delivered</strong><span>Accepted by the receiving server</span></div><time datetime="2026-10-29T10:24:01">10:24:01.327</time></li>
+          </ol>
+          <div class="stream-footer"><code>msg_demo_01</code><span><span class="status-dot"></span>Delivered</span></div>
+        </div>
+      </section>
+
+      <section class="closing-section section-shell" aria-labelledby="closing-title">
+        <p class="eyebrow">MONOSIGNAL</p><h2 id="closing-title">Make the<br>next connection.</h2><a class="button button-primary" href="workspace/index.html">Open workspace<i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
+      </section>
+    </main>
+    <footer class="site-footer section-shell"><a class="brand" href="index.html"><i data-lucide="box" aria-hidden="true"></i>MonoSignal</a><span>2026 <span aria-hidden="true">/</span> Original demo</span><a href="https://github.com/maile456/MonoSignal" target="_blank" rel="noreferrer">Source<i data-lucide="arrow-up-right" aria-hidden="true"></i></a></footer>
+    <noscript><p class="noscript">JavaScript is required for the 3D scene and interactive code examples. The workspace link and page navigation remain available.</p></noscript>
   </body>
 </html>

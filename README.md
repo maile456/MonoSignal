@@ -1,20 +1,31 @@
 # MonoSignal
 
-**黑白精密的技术视觉，做成可复用的前端 skill。**
+**黑白、精密的开发者产品视觉，做成可以直接使用的前端 skill。**
 
-[在线样品](https://maile456.github.io/MonoSignal/) · [Skill 指令](SKILL.md) · [设计规范](references/design-system.md) · [样品源码](docs/)
+[首页预览地址](https://maile456.github.io/MonoSignal/) · [功能工作区地址](https://maile456.github.io/MonoSignal/workspace/) · [Skill](SKILL.md) · [设计规范](references/design-system.md) · [源码](docs/)
 
-![邮件投递与事件控制台桌面展示](.github/preview-desktop.png)
+> 上方为 GitHub Pages 发布地址规划，当前部署状态以仓库 Pages 设置和实际访问结果为准。尚未在本文声明已部署。
+
+![MonoSignal 官网风格首页桌面展示](.github/preview-desktop.png)
 
 ## 这是什么
 
-MonoSignal 是一个面向 AI 编程助手的原创前端设计 skill，附带真实可操作的「邮件投递与事件控制台」样品。它定义布局、排版、色彩、组件状态与响应式决策，而不是让 AI 只模仿一张截图。灵感方向来自 [参考网站](https://resend.com/)，非其官方项目，不包含其官网源码或品牌素材。
+MonoSignal 是一个面向 AI 编程助手的前端设计 skill。视觉参考 [Resend](https://resend.com/)，这一版着重接近参考站的构图、字号层级、配色、产品展示方式与页面节奏，而非只抽取“极简”或“黑白”等抽象标签。
 
-适合希望采用「黑白精密的技术视觉」的项目。样品只是起点，不限制你做同类产品；已有 React、Vue 或其他项目均优先保留原有框架和功能。
+核心签名：**黑底大衬线标题、原创分块金属立方体、细线结构与语言切换代码**。保留原创品牌、文字、交互与素材，不包含参考产品的商标、官网源码或专有字体，也不表示与参考产品存在合作关系。
 
-## 样品交互
+适合API 产品、开发工具、技术产品网站和文档。已有 React、Vue 或其他项目优先保留原有框架、功能与数据契约。
 
-投递日志的组合搜索与状态筛选、Canvas 请求分布、详情时间线、本地模拟邮件与代码复制。
+## 两层样品
+
+| 入口 | 内容 |
+| --- | --- |
+| [`docs/index.html`](docs/index.html) | 开发者产品首页，含 Three.js 立方体、代码 tabs、复制与本地响应 |
+| [`docs/workspace/index.html`](docs/workspace/index.html) | 邮件投递与事件控制台 |
+
+首页用于检视风格与构图；工作区保留完整的任务流程，适合检视这种视觉如何落到实际应用。
+
+工作区可操作内容：日志搜索、状态筛选、事件详情、ID 复制、模拟测试邮件和代码切换。样品使用演示数据或本地状态，不连接生产业务服务。
 
 ## 安装到 Codex
 
@@ -34,47 +45,57 @@ mkdir -p "$skill_root"
 git clone https://github.com/maile456/MonoSignal.git "$skill_root/mono-signal"
 ```
 
-目标已有内容时 Git 会停止，不覆盖已有 skill。安装后在下一轮对话调用；若当前列表尚未更新，重新打开对话。
+目标已有内容时 Git 会停止，不覆盖现有 skill。安装后在下一轮对话调用；若列表尚未更新，重新打开对话。
 
 ```text
 使用 $mono-signal 为我的项目设计前端。
-先根据项目内容选择布局，保留现有框架和功能，完成响应式与实际交互。
+按参考风格的构图、字体层级和产品展示方式完成页面，
+保留我的品牌、已有框架与功能，做好响应式与真实交互。
 ```
 
 ## 运行与复用
 
-直接打开 `docs/index.html` 即可体验，不需要安装依赖。也可以访问上方 GitHub Pages 在线样品。
+直接打开 `docs/index.html` 查看首页，打开 `docs/workspace/index.html` 体验工作区，无需安装依赖。
 
-需要复制到新项目目录时，使用 Node.js 18+：
+复制到尚不存在的新目录时，使用 Node.js 18+：
 
 ```sh
 node scripts/scaffold.mjs --dest "<尚不存在的新目录绝对路径>"
+```
+
+在本仓库执行资源和语法检查：
+
+```sh
 npm run check
 ```
 
-`npm run check` 在本仓库执行，检查样品文件、静态资源与 JavaScript 语法；不是浏览器交互测试。样品的业务数据均为演示内容，表单不向外部提交，控制台不连接真实业务服务。具体可操作内容见在线页面。
+该命令不等同于浏览器交互或视觉检查；实际检查范围与状态见 [验证记录](QA.md)。
 
 <details>
 <summary>手机展示</summary>
 
-![手机展示](.github/preview-mobile.png)
+![MonoSignal 官网风格首页手机展示](.github/preview-mobile.png)
 
 </details>
 
-浏览器交互、响应式与脚手架检查结果见 [验证记录](QA.md)。
-
 ## 目录
 
-`SKILL.md` 是 skill 入口；`references/` 是设计规则；`assets/tokens.css` 是可移植浅深色变量；`docs/` 是完整静态样品，也是 Pages 发布目录；`scripts/` 提供复制和基础检查。
+- `SKILL.md`：skill 入口与关键设计决策。
+- `references/`：参考签名、尺寸、布局和状态规范。
+- `assets/tokens.css`：可移植设计变量。
+- `docs/`：官网风格首页、字体、媒体与本地依赖，也是 Pages 发布目录。
+- `docs/workspace/`：完整功能样品。
+- `scripts/`：新目录复制和资源检查。
 
 ## 许可与素材
 
-原创代码和设计规范使用 [MIT](LICENSE)。图标使用 [Lucide](https://lucide.dev/)，许可见 [第三方说明](THIRD_PARTY_NOTICES.md)；样品照片来源和适用许可也记录于该文件。照片不转授为 MIT，使用时请遵守其原许可。没有复制参考产品的 logo、插画或营销文案。
+原创代码和规范使用 [MIT](LICENSE)。Lucide、字体、Three.js及照片保持各自许可，见 [第三方与素材说明](THIRD_PARTY_NOTICES.md)。照片不重新授权为 MIT。原创生成插画与原创代码模型有独立来源说明，不使用参考产品的官方媒体。
 
 ## 同系列
 
-- [Clearfolio](https://github.com/maile456/Clearfolio)：清爽文档与作品秩序，样品为建筑与空间摄影作品集。
-- [QuietNotes](https://github.com/maile456/QuietNotes)：温暖克制的阅读界面，样品为中文个人博客。
-- [KindForm](https://github.com/maile456/KindForm)：友好极简的任务流程，样品为创意工作坊报名。
-- [MonoSignal](https://github.com/maile456/MonoSignal)：黑白精密的技术视觉，样品为邮件投递与事件控制台。
-- [CalmConsole](https://github.com/maile456/CalmConsole)：一致专业的业务工作台，样品为订单管理与详情编辑。
+- [Clearfolio](https://github.com/maile456/Clearfolio)：清晰、轻盈的文档产品视觉。
+- [QuietNotes](https://github.com/maile456/QuietNotes)：安静但有辨识度的笔记视觉。
+- [KindForm](https://github.com/maile456/KindForm)：友好、轻巧的表单产品视觉。
+- [MonoSignal](https://github.com/maile456/MonoSignal)：黑白、精密的开发者产品视觉。
+- [CalmConsole](https://github.com/maile456/CalmConsole)：清爽、一致的组件系统视觉。
+
