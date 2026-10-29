@@ -1,0 +1,51 @@
+[data-style="mono-signal"] {
+  color-scheme: light;
+  --rp-bg: #fafafa;
+  --rp-surface: #ffffff;
+  --rp-subtle: #f0f0f0;
+  --rp-text: #171717;
+  --rp-muted: #525252;
+  --rp-border: #dedede;
+  --rp-control-border: #737373;
+  --rp-accent: #176347;
+  --rp-on-accent: #ffffff;
+  --rp-focus: #2169cc;
+  --rp-success: #166534;
+  --rp-warning: #854d0e;
+  --rp-danger: #b42318;
+  --rp-font: Inter, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --rp-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --rp-body: 1rem;
+  --rp-line-height: 1.65;
+  --rp-letter-spacing: 0;
+  --rp-radius: 6px;
+  --rp-control-height: 40px;
+  --rp-content: 1200px;
+  --rp-reading: 72ch;
+  --rp-space-1: 4px;
+  --rp-space-2: 8px;
+  --rp-space-3: 12px;
+  --rp-space-4: 16px;
+  --rp-space-6: 24px;
+  --rp-space-8: 32px;
+  --rp-space-12: 48px;
+  --rp-shadow: 0 8px 24px rgb(0 0 0 / 10%);
+}
+
+[data-style="mono-signal"][data-theme="dark"] {
+  color-scheme: dark;
+  --rp-bg: #141414;
+  --rp-surface: #1c1c1c;
+  --rp-subtle: #262626;
+  --rp-text: #f5f5f5;
+  --rp-muted: #b8b8b8;
+  --rp-border: #3f3f3f;
+  --rp-control-border: #858585;
+  --rp-accent: #8ed8b3;
+  --rp-on-accent: #10271c;
+  --rp-focus: #85b7ff;
+  --rp-success: #91d5a6;
+  --rp-warning: #f2cc7e;
+  --rp-danger: #ffaaa1;
+  --rp-shadow: 0 8px 24px rgb(0 0 0 / 32%);
+}

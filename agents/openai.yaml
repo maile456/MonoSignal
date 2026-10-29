@@ -1,0 +1,4 @@
+interface:
+  display_name: "MonoSignal · 黑白精密的技术视觉"
+  short_description: "黑白排版与细线结构的原创技术视觉，适合开发者产品、文档和控制台"
+  default_prompt: "使用 $mono-signal 为这个项目设计精密、清晰的技术感前端，保留现有功能并适配项目类型。"
