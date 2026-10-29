@@ -4,7 +4,7 @@
 
 [首页预览地址](https://maile456.github.io/MonoSignal/) · [功能工作区地址](https://maile456.github.io/MonoSignal/workspace/) · [Skill](SKILL.md) · [设计规范](references/design-system.md) · [源码](docs/)
 
-> 上方为 GitHub Pages 发布地址规划，当前部署状态以仓库 Pages 设置和实际访问结果为准。尚未在本文声明已部署。
+> GitHub Pages 已上线。2026-10-29 实测首页与功能工作区均返回 HTTP 200，线上 HTML 与本地发布源码的 SHA-256 一致。
 
 ![MonoSignal 官网风格首页桌面展示](.github/preview-desktop.png)
 

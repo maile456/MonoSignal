@@ -42,7 +42,9 @@
 
 README 展示官网首页：`.github/preview-desktop.png`、`.github/preview-mobile.png`。工作区回归截图另存为 `.github/workspace-desktop.png`、`.github/workspace-mobile.png`，两组互不覆盖。
 
-直接打开两个页面分别复查；后续修改布局和功能时需重新执行对应检查。GitHub Pages 地址规划见 README，本文不将本地测试视为发布成功证明。
+直接打开两个页面分别复查；后续修改布局和功能时需重新执行对应检查。
+
+GitHub Pages 线上实测通过：首页与工作区均返回 HTTP 200，线上 HTML 与本地源码的 SHA-256 一致。地址见 README。本结论来自实际线上请求，不是仅依据本地测试。
 
 ## 范围
 
